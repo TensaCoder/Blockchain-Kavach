@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
 
-const Bitcoin = () => {
+const Block = () => {
 
-    const [blockHash, setBlockHash] = useState('00000000000000000001f7fb2f26d3a4dc41597a724211f3ffa31a6ef5b5808f');
-
-    
+    const [blockHash, setBlockHash] = useState("");
 
     let onChange = (event) =>{
         setBlockHash(event.target.value);
@@ -35,7 +33,7 @@ const Bitcoin = () => {
 
     return (
         <>
-            <div className='container mt-4'>
+            <div className='container mt-5'>
                 <h1>Block Value</h1>
 
                 <form>
@@ -49,10 +47,7 @@ const Bitcoin = () => {
                     </div>
                 </form>
 
-                <div className="mt-3">
-                    <div id="blockOutput">
-                            {}
-                    </div>
+                <div className="mt-3" id="blockOutput">
                 </div>
 
             </div>
@@ -61,4 +56,4 @@ const Bitcoin = () => {
     )
 }
 
-export default Bitcoin
+export default Block
