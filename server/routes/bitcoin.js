@@ -5,7 +5,8 @@ const axios = require('axios');
 
 router.post('/transaction',
     async (req, res) => {
-        let txHash = req.body.txHash;                   // TODO: Create ThunderClient request and add txhash in body of request
+        let txHash = req.body.transactionHash;                   // TODO: Create ThunderClient request and add txhash in body of request
+        console.log(txHash);
         try {
             const response = await axios.get(`https://blockchain.info/rawtx/${txHash}`);
             res.send(response.data);
@@ -41,7 +42,7 @@ router.post('/block',
 
 router.post('/address',
     async (req, res) => {
-        let address = req.body.address;                   // TODO: Create ThunderClient request and add address in body of request
+        let address = req.body.accountAddress;                   // TODO: Create ThunderClient request and add address in body of request
         try {
             const response = await axios.get(`https://blockchain.info/rawaddr/${address}`);
             res.send(response.data);
