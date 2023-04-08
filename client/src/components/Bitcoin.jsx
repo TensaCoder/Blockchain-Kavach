@@ -4,6 +4,7 @@ import axios from "axios";
 const Bitcoin = () => {
 
     const [blockHash, setBlockHash] = useState('00000000000000000001f7fb2f26d3a4dc41597a724211f3ffa31a6ef5b5808f');
+
     
 
     let onChange = (event) =>{
@@ -14,10 +15,15 @@ const Bitcoin = () => {
     let submit = async (event) =>{
         event.preventDefault();
         console.log(blockHash);
+        let data = {blockHash: blockHash}
         try{
-            let response = await axios.get(`http://localhost:9000/api/bitcoin/block/`, { blockHash: blockHash });
+            let response = await axios.post(`http://localhost:9000/api/bitcoin/block/`, data);
             console.log(response.data);
-            if (response.data === "Item not found or argument invalid"){
+            if (response.data.hash == blockHash){
+                let blockOutput = document.getElementById("blockOutput");
+                blockOutput.innerHTML= `Block with hash ${blockHash} exists!!!`;
+            }
+            else{
                 let blockOutput = document.getElementById("blockOutput");
                 blockOutput.innerHTML=response.data;
             }
@@ -25,13 +31,10 @@ const Bitcoin = () => {
         catch(error){
             console.error(error);
         }
-
     }
 
     return (
         <>
-
-
             <div className='container mt-4'>
                 <h1>Block Value</h1>
 
@@ -46,11 +49,9 @@ const Bitcoin = () => {
                     </div>
                 </form>
 
-                <div className="mb-3">
-                    {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" /> */}
+                <div className="mt-3">
                     <div id="blockOutput">
-
+                            {}
                     </div>
                 </div>
 
