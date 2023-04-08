@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import Bitcoin from './components/Bitcoin'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 import Navbar from './components/Navbar'
+import Block from './components/Block'
+import Transaction from './components/Transaction'
+import AccountAddress from './components/AccountAddress'
 
 function App() {
 
@@ -11,7 +10,11 @@ function App() {
     <>
       <Navbar />
 
-      <Bitcoin />
+      <Block />
+
+      <Transaction />
+
+      <AccountAddress />
 
     </>
   )
