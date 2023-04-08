@@ -9,6 +9,7 @@ router.get('/transaction',
         try {
             const response = await axios.get(`https://blockchain.info/rawtx/${txHash}`);
             res.send(response.data);
+
         } catch (error) {
             console.error(error);
             if ((error.response.data.message) === "Item not found or argument invalid"){
@@ -21,10 +22,14 @@ router.get('/transaction',
 
 router.get('/block',
     async (req, res) => {
-        let blockHash = req.body.blockHash;                   // TODO: Create ThunderClient request and add blockHash in body of request
+        let blockHash = req.query.blockHash;                   // TODO: Create ThunderClient request and add blockHash in body of request
+        console.log(blockHash)
+        // res.send("req received")
         try {
             const response = await axios.get(`https://blockchain.info/rawblock/${blockHash}`);
             res.send(response.data);
+            console.log(response.data)
+
         } catch (error) {
             console.error(error);
             if ((error.response.data.message) === "Item not found or argument invalid"){
